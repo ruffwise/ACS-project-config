@@ -1,6 +1,6 @@
 #!/bin/bash
 mkdir /var/www/
-sudo mount -t efs -o tls,accesspoint=fsap-08bd458ffe8063eaa fs-061c509ddfe4cc414:/ /var/www/
+sudo mount -t efs -o tls,accesspoint=fsap-0ce8e9b2df43aea45 fs-0761a5e4ff0995623:/ /var/www/
 yum install -y httpd 
 systemctl start httpd
 systemctl enable httpd
@@ -17,8 +17,8 @@ mkdir /var/www/html/
 cp -R /wordpress/* /var/www/html/
 cd /var/www/html/
 touch healthstatus
-sed -i "s/localhost/tech-database-1.cruk0gahns7p.us-east-1.rds.amazonaws.com/g" wp-config.php 
-sed -i "s/username_here/blacktechadmin/g" wp-config.php 
+sed -i "s/localhost/acs-database.cruk0gahns7p.us-east-1.rds.amazonaws.com/g" wp-config.php 
+sed -i "s/username_here/admin/g" wp-config.php 
 sed -i "s/password_here/Welcome123/g" wp-config.php 
 sed -i "s/database_name_here/wordpressdb/g" wp-config.php 
 chcon -t httpd_sys_rw_content_t /var/www/html/ -R
